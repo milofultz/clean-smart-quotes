@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Cleaner - Remove common issues with copied code</title>
+  <style>
+    html {
+      font-family: sans-serif;
+    }
+
+    body {
+      margin: auto;
+      max-width: 50rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    .alert {
+      background-color: #3f9632;
+      border-radius: 10px;
+      color: #fff;
+      display: none;
+      margin: 0 auto 1rem;
+      padding: 1rem;
+      width: min-content;
+    }
+  </style>
+</head>
+<body>
+  <h1>Code Cleaner</h1>
+  <p>Paste the text into the text area you want cleaned and click the button. It will replace any smart quotes with normal ones.</p>
+  <p class="alert"></p>
+  <form id="form">
+    <textarea name="code" id="code" cols="30" rows="10"></textarea>
+    <input id="form-button" type="submit" value="Clean">
+  </form>
+  <script>
+    document.getElementById('form-button').addEventListener('click', (e) => {
+      e.preventDefault();
+      const textArea = document.getElementById('code');
+      const alert = document.querySelector('.alert');
+      
+      let codeText = textArea.value;
+      codeText = codeText.replaceAll(/[\‟\”\„\“\❝\❞]/g, '"')
+                         .replaceAll(/[\‛\‚\‘\❛\❜\’]/g, '\'');
+      textArea.value = codeText;
+      alert.innerText = 'Converted';
+      alert.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
