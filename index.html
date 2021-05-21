@@ -49,7 +49,7 @@
     <ul>
       <li><code>‟”„“❝❞</code> with <code>"</code></li>
       <li><code>‛‚‘❛❜’</code> with <code>'</code></li>
-      <li><code> </code> (\u2028) with nothing</li>
+      <li><code> </code> (\u2028) with a newline</li>
     </ul>
   </p>
   <script>
@@ -61,7 +61,7 @@
       let codeText = textArea.value;
       codeText = codeText.replaceAll(/[\‟\”\„\“\❝\❞]/g, '"')
                          .replaceAll(/[\‛\‚\‘\❛\❜\’]/g, '\'')
-                         .replaceAll(/[\u2028]/g, '');
+                         .replaceAll(/[\u2028]/g, '\n');
       textArea.value = codeText;
       alert.innerText = 'Converted';
       alert.style.display = 'block';
