@@ -20,6 +20,12 @@
       width: 100%;
     }
 
+    ul, li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
     .alert {
       background-color: #3f9632;
       border-radius: 10px;
@@ -39,6 +45,13 @@
     <textarea name="code" id="code" cols="30" rows="10"></textarea>
     <input id="form-button" type="submit" value="Clean">
   </form>
+  <p>Replaces:
+    <ul>
+      <li><code>‟”„“❝❞</code> with <code>"</code></li>
+      <li><code>‛‚‘❛❜’</code> with <code>'</code></li>
+      <li><code> </code> (\u2028) with nothing</li>
+    </ul>
+  </p>
   <script>
     document.getElementById('form-button').addEventListener('click', (e) => {
       e.preventDefault();
@@ -47,7 +60,8 @@
       
       let codeText = textArea.value;
       codeText = codeText.replaceAll(/[\‟\”\„\“\❝\❞]/g, '"')
-                         .replaceAll(/[\‛\‚\‘\❛\❜\’]/g, '\'');
+                         .replaceAll(/[\‛\‚\‘\❛\❜\’]/g, '\'')
+                         .replaceAll(/[\u2028]/g, '');
       textArea.value = codeText;
       alert.innerText = 'Converted';
       alert.style.display = 'block';
